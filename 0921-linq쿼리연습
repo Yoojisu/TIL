@@ -1,0 +1,15 @@
+LINQ 쿼리
+
+int[] numbers = new int[7] { 0, 1, 2, 3, 4, 5, 6 }; ;
+
+var numbQuery1 =
+    from num in numbers 
+    where (num % 2) == 0
+    select num;
+
+List<int> nunumbeerQuery2 =
+    numbers.Where(a => (a % 2) == 0).ToList();
+    
+=> numbeerQuery1 -> numbeerQuery2와 같이 표현할 수 있다.   
+    
+    
