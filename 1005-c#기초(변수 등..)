@@ -1,0 +1,96 @@
+#변수
+
+class test
+    {
+        int globalVar;
+        const int Max = 1024;
+
+        public void Method1()
+        {
+            int localVar;
+            // 전역변수는 선언 후 할당하지 않아도 에러가 나지 않지만 전역변수는 아래와 같이 할당하지
+            // 않으면 에러 발생
+            localVar = 100;
+
+            Console.WriteLine(globalVar);
+            Console.WriteLine(localVar);
+        }
+    }
+    
+    
+    static void Main()
+        {
+          test obj = new test();
+          obj.Method1();       
+        }
+        
+        
+        // 필드 globalVar는 값을 명시적으로 할당하지 않은 경우 기본값 0 이 할당된다. 
+        // 지역변수 localVar는 값을 할당하지 않고 사용하게 되면, 컴파일러 에러가 발생한다.
+
+
+
+#enum type
+-> C#의 키워드 enum은 열거형 상수(constant)를 표현하기 위한 것으로 이를 이용하면 상수 숫자들을 보다 
+   의미있는 단어들로 표현할 수 있어서 프로그램을 읽기 쉽게 해준다.
+
+class Program
+{
+
+    enum City
+    {
+        Seoul,
+        Daejun,
+        Busan = 5,
+        Jeju = 10
+    }
+    
+    static void Main()
+    {
+        City myCity;
+        City myJeju;
+        myCity = City.Seoul;
+        myJeju = City.Jeju;
+
+        int cityValue = (int) myCity;
+        int jejuValue = (int) myJeju;
+
+        Console.WriteLine(jejuValue); // 10출력
+        Console.WriteLine(cityValue); // 0출력
+
+        if (myCity == City.Seoul)
+        {
+            Console.WriteLine("hello Seoul");
+        }
+     }
+     
+     
+     
+#flag enum
+ -> [Flags] 특성을 갖는 플래그 enum은 OR 연산자를 이용해서 한 enum 변수에 다중값(예: 1+4)을 가질 수 있으며, 
+    AND 연산자를 이용하여 enum 변수가 특정 멤버를 포함하고 있는지 체크할 수 있다.
+    
+[Flags]
+enum Boarder
+{
+    None = 0,
+    Top = 1,
+    Right = 2,
+    Bottom = 4,
+    Left = 8,
+}
+static void Main()
+{
+  // OR 연산자로 다중 플래그 할당
+  Boarder b = Boarder.Top | Boarder.Bottom;
+  
+  // & 연산자로 플래그 체크
+  if( (b & Boarder.Top) != 0)
+  {
+      //HasFlag()이용 플래그 체크
+      if (b.HasFlag(Boarder.Bottom))
+      {
+          Console.WriteLine(b.ToString()); // Top, Bottom 출력, [Flags] 제거하면 5 출력
+      }
+  }
+}
