@@ -1,0 +1,54 @@
+# 람다식
+ - C# 3.0부터 지원하는 =>연산자는 c#에서 람다식을 표현할떄 사용한다. 람다식은 무명 메서드와 비슷하게 무명 함수를 표현하는데 사용된다.
+ 람다식은 아래와 같이 입력 파라미터(0개 ~ N개)를 => 연산자 왼쪽에, 실행 문장들을 => 연산자 오른쪽에 둔다.
+ 
+ 람다식 문법 : (입력 파라미터) => { 실행문장 블럭 };
+ 
+ 예를 들어 하나의 문자열을 받아 들여 메세지 박스를 띄운다면 다음과 같이 간단히 사용가능
+ str => { MessageBox.Shoe(str); }
+
+ 입력 파라미터는 하나도 없는 경우부터 여러 개 있는 경우가 있다.
+ 
+ // 입력 파라미터가 없는 경우
+ () => Write("No");
+ 
+ // 입력 파라미터가 1~2개 있는 경우
+ (p) => Write(p);
+ (s, e) => { Write(s); Write(e); }
+ 
+ // 입력 파라미터 타입을 명시하는 경우
+ (string s, int i) => Write(s,i);
+
+// 간단한 이벤트 핸들러를 람다식으로 표현한 경우
+this.button1.Click += (sender, e) => ((Button)sender).BackColor = Color.Red;
+
+ - 람다식은 .Net Framework의 여러 곳에서 사용되지만, 특히 LINQ (Language Integrated Query)에서 많이 사용됨
+ LINQ는 별도의 주제이지만 간단히 예를 들면, 아래는 람다식이 LINQ의 Where 쿼리 안에서 사용된 예이다.
+ 
+ // LINQ Where() 메서드 안에서 사용된 람다식
+ var projs = db.Progects.Where(p => p.Name == strName);
+ 
+ 
+ # 익명 타입
+  - C# 에서 어떤 클래스를 사용하기 위해서는 일반적으로 먼저 클래스를 정의한 후 사용한다. C# 3.0 부터 클래스를 미리 정의하지 않고 사용할 수 있게 하는 익명타입(Anonymous Type)을 지원하게 되었다.
+  
+  - Anonymous Type은 공식적으로 클래스를 정의할 필요 없이 Type을 간단히 임시로 만들어 사용할 때 유용하다. 특히 Anonymous Type은 LINQ를 사용할 때 많이 사용된다.
+    아래 예제는 LINQ의 Where() 메서드를 이용해 특정 조건의 데이타를 찾은 후, Select() 메서드를 사용하여 일부 컬럼들로만 구성된 새 익명 타입을 만들어 리턴하는 예를 보여주고 있다.
+
+private void RunTest()
+{
+    var v = new[] {
+        new { Name="Lee", Age=33, Phone="02-111-1111" },
+        new { Name="Kim", Age=25, Phone="02-222-2222" },
+        new { Name="Park", Age=37, Phone="02-333-3333" },
+    };
+
+    // LINQ Select를 이용해 Name과 Age만 갖는 새 익명타입 객체들을 리턴.
+    var list = v.Where(p => p.Age >= 30).Select(p => new { p.Name, p.Age });
+    foreach (var a in list)
+    {
+        Debug.WriteLine(a.Name + a.Age);
+    }
+}
+ 
+    
