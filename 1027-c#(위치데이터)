@@ -1,0 +1,18 @@
+# Spatial 데이터
+ - Spatial 데이터는 크게 평면 데이터를 다루는 Geometry와 GPS 위치와 같은 3차원 데이터를 다루는 Geography로 구분할 수 있다.
+   SQL Server는 SQL 2008부터 이 2가지 Spatial Data Type을 지원하고 있고 있는데, 이 Spatial Type들은 SQL 내부적으로 CLR 어셈블리로 구현되어 
+   공간 데이타의 표현과 연산을 지원하고 있다.
+
+# SQL에서 Geography 데이타 사용
+ - 지구상의 위치는 보통 위도(Latitude)와 경도(Longitude)로 표현되는데, 예를 들어 서울시청의 위치는 위도 37.566666 경도 126.978414 이다.
+  지구상의 위치 데이타 저장하고 각 위치들 간의 거리 같은 것을 계산하기 위해 SQL 에서 Geography 데이타 타입을 사용한다. (SQL 2008 이전 버전에서는 위치 정보를 위도컬럼, 경도컬럼으로 나누어 저장하였지만, 
+  SQL 2008부터는 Geography 컬럼 타입을 사용하여 하나의 컬럼에 저장하게 되었다)
+  
+  Geography 컬럼에 위도/경도를 넣기 위해서는 몇 가지 다른 함수(메서드)가 제공되는데 가장 간단하게는 geography::Parse()를 사용할 수 있다.
+  geography::Parse()의 파라미터는 하나의 문자열로서 위치포인트를 경도(lng) / 위도(lat) 순으로 지정하게된다. 
+  예를 들어 위의 서울시청 위치는 POINT(126.978414 37.566666) 와 같이 표현한다.
+  
+  
+  // 
+  var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(4326);
+  var location = geometryFactory.CreatePoint(new Coordinate(double.Parse(lng), double.Parse(lat)));
