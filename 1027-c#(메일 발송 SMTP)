@@ -1,0 +1,25 @@
+ # c#으로 메일 발송 (SMTP)
+ 
+  - C#으로 Email을 발송하기 위한 한 방법으로 SMTP 메일을 이용할 수 있다. .NET의 System.Net.Mail 네임스페이스에 있는 SmtpClient 클래스를 사용하면, SMTP 서버를 통해 이메일을 발송할 수 있다.
+    먼저 MailMessage 객체를 생성하여 보내는 사람, 받는 사람, 주제 그리고 본문을 지정한다. 만약 본문이 HTML 형식이라면 MailMessage 객체의 IsBodyHtml 속성을 true로 설정한다.
+    다음 SmtpClient 객체를 생성한 후 SMTP 서버명과 포트번호를 지정하는데, SMTP 서버는 핫메일 (Live)과 같은 Public 서버 혹은 사설 SMTP 서버를 사용할 수 있다.
+    예를 들어, outlook.com, hotmail.com, live.com 등의 서버를 사용하기 위해서는 서버명에 smtp.office365.com 을 지정하고 포트번호를 587로 사용한다. 
+    물론 SMTP 서버에 엑세스하기 위해 자신의 계정과 암호를 Credentials 속성에 지정해야 한다.
+        
+// MailMessage 객체 생성
+// 파라미터 : (보내는사람, 받는사람, 주제, 본문) 
+MailMessage msg = new MailMessage("sender@live.com", "receiver@live.com",
+          "Subject : Email Test", "This is a mail test");
+//msg.IsBodyHtml = true; //본문이 HTML 인 경우
+
+// SmtpClient 셋업 (SMTP 서버, 포트)
+SmtpClient smtp = new SmtpClient("smtp.office365.com", 587);
+smtp.EnableSsl = true; // SSL 사용
+
+// 아웃룩, Live 또는 Hotmail의 계정과 암호를 지정
+smtp.Credentials = new NetworkCredential("sender@live.com", "password");
+
+// 메일 발송
+smtp.Send(msg);
+
+
