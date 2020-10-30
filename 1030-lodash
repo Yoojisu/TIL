@@ -1,0 +1,12 @@
+#lodash
+  - lodash는 자바스크립트 유틸리티 라이브러리로써 array, collection, date, number, object 등이 있으며, 데이터를 쉽게 다룰 수 있도록 도와준다. 
+    (예를들면, 배열 안에 중복 값을 제거하기 / object 배열 안에 특정 값만 추출하기 등..)
+    특히, 자바스크립트에서 배열 안의 객체들의 값을 핸들링할때 유용하다.
+
+https://jeonghwan-kim.github.io/lodash/
+
+https://hyunseob.github.io/2016/04/24/throttle-and-debounce/
+
+- Throttle 는 여러번 발생하는 이벤트를 일정 시간 동안, 한번만 실행 되도록 만드는 개념이다.
+
+- Debounce 는 여러번 발생하는 이벤트에서, 가장 마지막 이벤트 만을 실행 되도록 만드는 개념이다.
