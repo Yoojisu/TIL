@@ -1,0 +1,58 @@
+https://aws.amazon.com/ko/getting-started/hands-on/deploy-wordpress-with-amazon-rds/2/
+
+ 
+모듈 1: RDS로 MySQL 데이터베이스 생성
+이 모듈에서는 WordPress 사이트에 사용할 MySQL 데이터베이스를 생성합니다. 데이터베이스를 생성하기 전에 WordPress에 MySQL 데이터베이스가 필요한 이유와 Amazon RDS가 데이터베이스 요구에 적합한 선택인 이유를 알아보겠습니다. 모듈 완료 시간 : 5분 왜 WordPress에 MySQL이 필요한가요? WordPress는 블로그, 전자 상거래 사이트, 토론 게시판 등을 작성하기 위한 유연한 콘텐츠 관리 시스템입니다. 어떤 종류의 웹사이트를 제작하든, 저장할 콘텐츠가 있을 것입니다. 블로그의 경우는 블로그 게시물...
+
+aws.amazon.com
+
+
+
+#1단계
+
+RDS MySQL 데이터베이스 생성! 
+
+
+#2단계
+
+EC2란 독립된 컴퓨터를 임대해주는 서비스 (가상컴퓨팅)
+
+https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/concepts.html
+
+ 
+Amazon EC2이란 무엇입니까? - Amazon Elastic Compute Cloud
+Amazon EC2이란 무엇입니까? PDF RSS Amazon Elastic Compute Cloud(Amazon EC2)는 Amazon Web Services(AWS) 클라우드에서 확장 가능 컴퓨팅 용량을 제공합니다. Amazon EC2를 사용하면 하드웨어에 선투자할 필요가 없어 더 빠르게 애플리케이션을 개발하고 배포할 수 있습니다. Amazon EC2를 통해 원하는 만큼 가상 서버를 구축하고 보안 및 ...
+
+docs.aws.amazon.com
+
+
+
+EC2 인스턴스 생성
+
+
+
+#3단계
+
+RDS 데이터베이스 구성
+
+
+EC2인스턴스가 RDS DB에 엑세스하도록 허용 -> EC2인스턴스에 SSH적용 -> DB사용자 생성
+
+
+인바운드 규칙 추가
+
+
+보안 그룹 생성됨
+
+
+
+
+SSH를 인스턴스에 적용할 때 퍼블릭 IPv4  필요
+
+
+IPv4주소로 연결
+
+
+mysql user, password 입력 후 연결
+
+이제 순서대로 진행하면됨!
